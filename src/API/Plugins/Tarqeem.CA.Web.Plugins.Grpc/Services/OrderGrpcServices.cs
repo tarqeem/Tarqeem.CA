@@ -1,6 +1,6 @@
-﻿using Tarqeem.CA.Application.Features.Order.Queries.GetUserOrders;
+﻿using CleanArc.Web.Plugins.Grpc.ProtoModels;
+using Tarqeem.CA.Application.Features.Order.Queries.GetUserOrders;
 using Tarqeem.CA.SharedKernel.Extensions;
-using Tarqeem.CA.Web.Plugins.Grpc.ProtoModels;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Mediator;

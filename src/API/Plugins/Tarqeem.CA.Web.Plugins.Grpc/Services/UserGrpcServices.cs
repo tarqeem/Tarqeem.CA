@@ -1,8 +1,8 @@
-﻿using Tarqeem.CA.Application.Features.Users.Queries.GenerateUserToken;
+﻿using CleanArc.Web.Plugins.Grpc.ProtoModels;
+using Tarqeem.CA.Application.Features.Users.Queries.GenerateUserToken;
 using Tarqeem.CA.Application.Features.Users.Queries.TokenRequest;
 using Grpc.Core;
 using Mediator;
-using Tarqeem.CA.Web.Plugins.Grpc.ProtoModels;
 
 namespace Tarqeem.CA.Web.Plugins.Grpc.Services;
 
