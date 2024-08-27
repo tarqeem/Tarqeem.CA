@@ -1,0 +1,6 @@
+* Tarqeem .NET Clean Architecture (td;lr)
+(notes will be added incrementally)
+
+Here are the projects you're probably interested in:
+- [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/]] (specifically the [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Repositories/]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Configuration/]])
+- The roles should be identified at [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Identity/Identity/SeedDatabaseService/SeedDataBase.cs]]
