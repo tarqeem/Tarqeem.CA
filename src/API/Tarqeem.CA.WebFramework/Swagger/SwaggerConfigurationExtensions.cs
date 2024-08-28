@@ -154,7 +154,6 @@ public static class SwaggerConfigurationExtensions
         //Swagger middleware for generate UI from swagger.json
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
             options.SwaggerEndpoint("/swagger/v1.1/swagger.json", "V1.1 Docs Using Minimal Api Endpoints");
 
             #region Customizing

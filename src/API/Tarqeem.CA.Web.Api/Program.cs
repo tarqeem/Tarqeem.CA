@@ -8,7 +8,6 @@ using Tarqeem.CA.Infrastructure.Identity.Jwt;
 using Tarqeem.CA.Infrastructure.Identity.ServiceConfiguration;
 using Tarqeem.CA.Infrastructure.Persistence.ServiceConfiguration;
 using Tarqeem.CA.SharedKernel.Extensions;
-using Tarqeem.CA.Web.Api.Controllers.V1.UserManagement;
 using Tarqeem.CA.Web.Plugins.Grpc;
 using Tarqeem.CA.WebFramework.Filters;
 using Tarqeem.CA.WebFramework.Middlewares;
@@ -64,7 +63,7 @@ builder.Services.ConfigureGrpcPluginServices();
 
 builder.Services.AddAutoMapper(expression =>
 {
-    expression.AddMaps(typeof(User), typeof(JwtService), typeof(UserController));
+    expression.AddMaps(typeof(User), typeof(JwtService));
 });
 
 var app = builder.Build();
