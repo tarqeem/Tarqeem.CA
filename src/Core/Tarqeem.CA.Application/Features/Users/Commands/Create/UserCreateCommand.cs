@@ -3,6 +3,7 @@ using Tarqeem.CA.Domain.Entities.User;
 using FluentValidation;
 using Mediator;
 using Tarqeem.CA.Application.Models.Common;
+using Tarqeem.CA.Application.Models.Jwt;
 using Tarqeem.CA.Application.Profiles;
 using Tarqeem.CA.SharedKernel.ValidationBase;
 using Tarqeem.CA.SharedKernel.ValidationBase.Contracts;
@@ -10,7 +11,7 @@ using Tarqeem.CA.SharedKernel.ValidationBase.Contracts;
 namespace Tarqeem.CA.Application.Features.Users.Commands.Create;
 
 public record UserCreateCommand(string UserName, string Name, string FamilyName, string Password)
-    : IRequest<OperationResult<UserCreateCommandResult>>
+    : IRequest<OperationResult<AccessToken>>
         , IValidatableModel<UserCreateCommand>
         , ICreateMapper<User>
 {

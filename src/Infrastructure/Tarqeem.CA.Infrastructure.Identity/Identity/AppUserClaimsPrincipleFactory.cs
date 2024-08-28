@@ -20,7 +20,6 @@ public class AppUserClaimsPrincipleFactory:UserClaimsPrincipalFactory<User,Role>
         var claimsIdentity = await base.GenerateClaimsAsync(user);
         //claimsIdentity.AddClaim(new Claim(ClaimTypes.Email,user?.Email));
         // claimsIdentity.AddClaim(new Claim(ClaimTypes.MobilePhone,user.PhoneNumber));
-        claimsIdentity.AddClaim(new Claim(ClaimTypes.UserData,user.GeneratedCode));
 
         foreach (var roles in userRoles)
         {

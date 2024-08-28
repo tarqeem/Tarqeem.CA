@@ -17,17 +17,16 @@ public class AdminManagerEndpoints : ICarterModule
         app.MapEndpoint(
             builder => builder.MapPost($"{_routePrefix}Login"
                 , async (AdminGetTokenQuery model, ISender sender) => (await sender.Send(model)).ToEndpointResult())
-                , _version
-                ,"AdminLogin"
-                ,_tag);
-
+            , _version
+            , "AdminLogin"
+            , _tag);
 
         app.MapEndpoint(
-            builder => builder.MapPost($"{_routePrefix}NewAdmin"
-                , async (AddAdminCommand model, ISender sender) => (await sender.Send(model)).ToEndpointResult())
-            , _version
-            , "AddAdmin"
-            , _tag)
+                builder => builder.MapPost($"{_routePrefix}NewAdmin"
+                    , async (AddAdminCommand model, ISender sender) => (await sender.Send(model)).ToEndpointResult())
+                , _version
+                , "AddAdmin"
+                , _tag)
             .RequireAuthorization(builder => builder.RequireRole("admin"));
     }
 }

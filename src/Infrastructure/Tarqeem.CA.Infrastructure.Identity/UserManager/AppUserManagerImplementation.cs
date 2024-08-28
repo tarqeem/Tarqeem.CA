@@ -10,6 +10,7 @@ namespace Tarqeem.CA.Infrastructure.Identity.UserManager;
 public class AppUserManagerImplementation : IAppUserManager
 {
     private readonly AppUserManager _userManager;
+
     public AppUserManagerImplementation(AppUserManager userManager)
     {
         _userManager = userManager;
@@ -27,16 +28,11 @@ public class AppUserManagerImplementation : IAppUserManager
     }
 
 
-    public Task<User> GetUserByCode(string code)
-    {
-        return _userManager.Users.FirstOrDefaultAsync(c => c.GeneratedCode.Equals(code));
-    }
-
-
     public async Task<IdentityResult> VerifyUserCode(User user, string code)
     {
         var confirmationResult = await _userManager.VerifyUserTokenAsync(
-            user, CustomIdentityConstants.OtpPasswordLessLoginProvider, CustomIdentityConstants.OtpPasswordLessLoginPurpose, code);
+            user, CustomIdentityConstants.OtpPasswordLessLoginProvider,
+            CustomIdentityConstants.OtpPasswordLessLoginPurpose, code);
 
         if (confirmationResult)
             await _userManager.UpdateSecurityStampAsync(user);
@@ -49,7 +45,8 @@ public class AppUserManagerImplementation : IAppUserManager
     public Task<string> GenerateOtpCode(User user)
     {
         return _userManager.GenerateUserTokenAsync(
-            user, CustomIdentityConstants.OtpPasswordLessLoginProvider, CustomIdentityConstants.OtpPasswordLessLoginPurpose);
+            user, CustomIdentityConstants.OtpPasswordLessLoginProvider,
+            CustomIdentityConstants.OtpPasswordLessLoginPurpose);
     }
 
 
@@ -88,8 +85,6 @@ public class AppUserManagerImplementation : IAppUserManager
 
     public async Task<IdentityResult> IncrementAccessFailedCountAsync(User user)
     {
-       
-
         return await _userManager.AccessFailedAsync(user);
     }
 
@@ -103,7 +98,7 @@ public class AppUserManagerImplementation : IAppUserManager
     public async Task ResetUserLockoutAsync(User user)
     {
         await _userManager.SetLockoutEndDateAsync(user, null);
-         await _userManager.ResetAccessFailedCountAsync(user);
+        await _userManager.ResetAccessFailedCountAsync(user);
     }
 
     public async Task UpdateUserAsync(User user)

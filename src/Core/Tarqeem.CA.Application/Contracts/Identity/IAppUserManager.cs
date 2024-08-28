@@ -7,14 +7,13 @@ public interface IAppUserManager
 {
     Task<IdentityResult> CreateUser(User user);
     Task<bool> IsExistUser(string userName);
-    Task<User> GetUserByCode(string code);
-    Task<IdentityResult> VerifyUserCode(User user,string code);
+    Task<IdentityResult> VerifyUserCode(User user, string code);
     Task<string> GenerateOtpCode(User user);
-    Task<SignInResult> AdminLogin(User user,string password);
+    Task<SignInResult> AdminLogin(User user, string password);
     Task<User> GetByUserName(string userName);
     Task<User> GetUserByIdAsync(int userId);
     Task<List<User>> GetAllUsersAsync();
-    Task<IdentityResult> CreateUserWithPasswordAsync(User user,string password);
+    Task<IdentityResult> CreateUserWithPasswordAsync(User user, string password);
     Task<IdentityResult> AddUserToRoleAsync(User user, Role role);
     Task<IdentityResult> IncrementAccessFailedCountAsync(User user);
     Task<bool> IsUserLockedOutAsync(User user);

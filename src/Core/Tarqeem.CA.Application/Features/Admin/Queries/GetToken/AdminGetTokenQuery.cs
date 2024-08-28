@@ -15,12 +15,12 @@ public record AdminGetTokenQuery(string UserName, string Password) : IRequest<Op
         validator.RuleFor(c => c.UserName)
             .NotEmpty()
             .NotNull()
-            .WithMessage("Please enter admin username");
+            .WithMessage("Please enter username");
 
         validator.RuleFor(c => c.Password)
             .NotEmpty()
             .NotNull()
-            .WithMessage("Please enter admin password");
+            .WithMessage("Please enter password");
 
         return validator;
     }
