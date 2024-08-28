@@ -4,3 +4,69 @@
 Here are the projects you're probably interested in:
 - [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/]] (specifically the [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Repositories/]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Configuration/]])
 - The roles should be identified at [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Identity/Identity/SeedDatabaseService/SeedDataBase.cs]]
+** Add New Entity With Endpoints
+- When defining a new entity, you should define its [[file:src/Core/Tarqeem.CA.Domain/Entities/][features]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Configuration/][configuration]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Repositories/][repo]],
+  and after that you should register the repository in
+  [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/ServiceConfiguration/ServiceCollectionExtensions.cs]]
+  the repository interface should be in [[file:src/Core/Tarqeem.CA.Application/Contracts/Persistence/]]
+
+  In order:
+  1. Add the entity to the domains:
+     #+begin_src csharp
+using Tarqeem.CA.Domain.Common;
+
+namespace Tarqeem.CA.Domain.Entities.Try;
+
+public class Try : BaseEntity
+{
+    public string Name { get; set; }
+
+    #region Navigation Properties
+
+    public User.User User { get; set; }
+    public int UserId { get; set; }
+
+    #endregion
+}
+     #+end_src
+  2. Add the configuration:
+     #+begin_src csharp
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Tarqeem.CA.Domain.Entities.Try;
+
+namespace Tarqeem.CA.Infrastructure.Persistence.Configuration.TryConfig;
+
+internal class TryConfig : IEntityTypeConfiguration<Try>
+{
+    public void Configure(EntityTypeBuilder<Try> builder)
+    {
+        builder.HasOne(c => c.User)
+            .WithMany(c => c.Tries).HasForeignKey(c => c.UserId);
+    }
+}
+     #+end_src
+  3. Add the repository interface:
+     #+begin_src csharp
+using Tarqeem.CA.Domain.Entities.Order;
+using Tarqeem.CA.Domain.Entities.Try;
+
+namespace Tarqeem.CA.Application.Contracts.Persistence;
+
+public interface ITheTryRepository
+{
+    Task AddATryAsync(TheTry _try);
+    Task<List<Order>> GetAllUserTriesAsync(int userId);
+    Task<List<Order>> GetAllTriesWithRelatedUserAsync();
+    Task DeleteUserTriesAsync(int userId);
+}
+     #+end_src
+     /(note that from here I started naming "Try" as "TheTry" because of compilation errors)/
+  4. (TODO) Implement the repository interface in the Infrastructure.PersistenceImplement
+  5. (TODO) Write the interfaces and handlers for the features (commands and quires)
+  6. (TODO) Add the repository as a service in the service configuration
+  7. Finally, define the endpoints in the API
+
+
+I'm not sure if I will continue writing the example here, it's better to refer to an
+example project and read its code.
