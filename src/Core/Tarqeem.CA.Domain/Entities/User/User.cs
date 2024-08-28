@@ -19,11 +19,4 @@ public class User:IdentityUser<int>,IEntity
     public ICollection<UserClaim> Claims { get; set; }
     public ICollection<UserToken> Tokens { get; set; }
     public ICollection<UserRefreshToken> UserRefreshTokens { get; set; }
-
-    #region Navigation Properties
-
-    public IList<Order.Order> Orders { get; set; }
-
-    #endregion
-
 }

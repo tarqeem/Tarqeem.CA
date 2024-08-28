@@ -3,14 +3,9 @@ using Carter;
 using Tarqeem.CA.Application.Features.Users.Commands.Create;
 using Tarqeem.CA.Application.Features.Users.Commands.RefreshUserTokenCommand;
 using Tarqeem.CA.Application.Features.Users.Commands.RequestLogout;
-using Tarqeem.CA.Application.Features.Users.Queries.GenerateUserToken;
-using Tarqeem.CA.Application.Features.Users.Queries.TokenRequest;
 using Tarqeem.CA.SharedKernel.Extensions;
 using Tarqeem.CA.WebFramework.WebExtensions;
 using Mediator;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Tarqeem.CA.Web.Api.Endpoints;
 
@@ -28,21 +23,6 @@ public class UserEndpoints : ICarterModule
             return result.ToEndpointResult();
         }),_version,"Register",_tag);
 
-
-        app.MapEndpoint(
-            builder => builder.MapPost($"{_routePrefix}TokenRequest", async (UserTokenRequestQuery model, ISender sender) =>
-            {
-                var result = await sender.Send(model);
-                return result.ToEndpointResult();
-            }), _version, "TokenRequest", _tag);
-
-
-        app.MapEndpoint(
-            builder => builder.MapPost($"{_routePrefix}LoginConfirmation", async (GenerateUserTokenQuery model, ISender sender) =>
-            {
-                var result = await sender.Send(model);
-                return result.ToEndpointResult();
-            }), _version, "LoginConfirmation", _tag);
 
         app.MapEndpoint(
             builder => builder.MapGet($"{_routePrefix}RefreshSignIn", async ( Guid userRefreshToken, ISender sender) =>
