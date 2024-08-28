@@ -37,7 +37,6 @@ public class SeedDataBase : ISeedDataBase
             {
                 UserName = "admin",
                 Email = "admin@site.com",
-                PhoneNumberConfirmed = true
             };
 
             await  _userManager.CreateAsync(user, "qw123321");

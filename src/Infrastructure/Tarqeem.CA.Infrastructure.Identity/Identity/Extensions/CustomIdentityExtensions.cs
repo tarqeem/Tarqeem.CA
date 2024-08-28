@@ -28,12 +28,6 @@ public class PasswordlessLoginTotpTokenProvider<TUser> : TotpSecurityStampBasedT
     {
         return Task.FromResult(false);
     }
-
-    public override async Task<string> GetUserModifierAsync(string purpose, UserManager<TUser> manager, TUser user)
-    {
-        var phone = await manager.GetPhoneNumberAsync(user);
-        return "PasswordlessLogin:" + purpose + ":" + phone;
-    }
 }
 
 public class PasswordlessLoginTokenProviderOptions : DataProtectionTokenProviderOptions

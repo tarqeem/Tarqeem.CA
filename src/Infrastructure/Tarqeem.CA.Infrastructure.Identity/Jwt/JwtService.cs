@@ -86,13 +86,6 @@ public class JwtService : IJwtService
         return Task.FromResult(principal);
     }
 
-    public async Task<AccessToken> GenerateByPhoneNumberAsync(string phoneNumber)
-    {
-        var user = await _userManager.Users.AsNoTracking().FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
-        var result = await this.GenerateAsync(user);
-        return result;
-    }
-
     public async Task<AccessToken> RefreshToken(Guid refreshTokenId)
     {
         var refreshToken = await _unitOfWork.UserRefreshTokenRepository.GetTokenWithInvalidation(refreshTokenId);

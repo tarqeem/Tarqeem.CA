@@ -20,30 +20,18 @@ public class AppUserManagerImplementation : IAppUserManager
         return _userManager.CreateAsync(user);
     }
 
-    public Task<bool> IsExistUser(string phoneNumber)
-    {
-        return _userManager.Users.AnyAsync(c => c.PhoneNumber == phoneNumber);
-    }
 
-    public Task<bool> IsExistUserName(string userName)
+    public Task<bool> IsExistUser(string userName)
     {
         return _userManager.Users.AnyAsync(c => c.UserName.Equals(userName));
     }
 
-    public async Task<string> GeneratePhoneNumberConfirmationToken(User user, string phoneNumber)
-    {
-        return await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
-    }
 
     public Task<User> GetUserByCode(string code)
     {
         return _userManager.Users.FirstOrDefaultAsync(c => c.GeneratedCode.Equals(code));
     }
 
-    public async Task<IdentityResult> ChangePhoneNumber(User user, string phoneNumber, string code)
-    {
-        return await _userManager.ChangePhoneNumberAsync(user, phoneNumber, code);
-    }
 
     public async Task<IdentityResult> VerifyUserCode(User user, string code)
     {
@@ -64,10 +52,6 @@ public class AppUserManagerImplementation : IAppUserManager
             user, CustomIdentityConstants.OtpPasswordLessLoginProvider, CustomIdentityConstants.OtpPasswordLessLoginPurpose);
     }
 
-    public Task<User> GetUserByPhoneNumber(string phoneNumber)
-    {
-        return _userManager.Users.FirstOrDefaultAsync(c => c.PhoneNumber.Equals(phoneNumber));
-    }
 
     public async Task<SignInResult> AdminLogin(User user, string password)
     {

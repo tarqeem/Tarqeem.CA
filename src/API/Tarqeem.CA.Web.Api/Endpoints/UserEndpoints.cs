@@ -1,9 +1,5 @@
-﻿using System.Security.Claims;
-using Carter;
+﻿using Carter;
 using Tarqeem.CA.Application.Features.Users.Commands.Create;
-using Tarqeem.CA.Application.Features.Users.Commands.RefreshUserTokenCommand;
-using Tarqeem.CA.Application.Features.Users.Commands.RequestLogout;
-using Tarqeem.CA.SharedKernel.Extensions;
 using Tarqeem.CA.WebFramework.WebExtensions;
 using Mediator;
 
@@ -23,22 +19,5 @@ public class UserEndpoints : ICarterModule
             return result.ToEndpointResult();
         }),_version,"Register",_tag);
 
-
-        app.MapEndpoint(
-            builder => builder.MapGet($"{_routePrefix}RefreshSignIn", async ( Guid userRefreshToken, ISender sender) =>
-            {
-
-                var result = await sender.Send(new RefreshUserTokenCommand(userRefreshToken));
-                return result.ToEndpointResult();
-            }), _version, "RefreshSignIn", _tag);
-
-        app.MapEndpoint(
-            builder => builder.MapGet($"{_routePrefix}Logout", async (ClaimsPrincipal user, ISender sender) =>
-            {
-
-                var result = await sender.Send(new RequestLogoutCommand(int.Parse(user.Identity.GetUserId())));
-                return result.ToEndpointResult();
-            }), _version, "Logout", _tag)
-            .RequireAuthorization();
     }
 }

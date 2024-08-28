@@ -53,7 +53,7 @@ public abstract class TestIdentitySetup
             options.Password.RequireUppercase = false;
 
             options.SignIn.RequireConfirmedEmail = false;
-            options.SignIn.RequireConfirmedPhoneNumber = true;
+            options.SignIn.RequireConfirmedPhoneNumber = false;
 
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.AllowedForNewUsers = false;
