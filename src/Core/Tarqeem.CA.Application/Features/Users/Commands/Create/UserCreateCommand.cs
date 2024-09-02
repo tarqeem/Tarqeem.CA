@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Tarqeem.CA.Domain.Entities.User;
+﻿using Tarqeem.CA.Domain.Entities.User;
 using FluentValidation;
 using Mediator;
 using Tarqeem.CA.Application.Models.Common;

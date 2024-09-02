@@ -4,11 +4,14 @@
 Here are the projects you're probably interested in:
 - [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/]] (specifically the [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Repositories/]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Configuration/]])
 - The roles should be identified at [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Identity/Identity/SeedDatabaseService/SeedDataBase.cs]]
-** Add New Entity With Endpoints
-- When defining a new entity, you should define its [[file:src/Core/Tarqeem.CA.Domain/Entities/][features]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Configuration/][configuration]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Repositories/][repo]],
-  and after that you should register the repository in
-  [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/ServiceConfiguration/ServiceCollectionExtensions.cs]]
-  the repository interface should be in [[file:src/Core/Tarqeem.CA.Application/Contracts/Persistence/]]
+
+For claim policies, check ConstantPolicies. When defining a new entity, you should define
+its [[file:src/Core/Tarqeem.CA.Domain/Entities/][features]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Configuration/][configuration]] and [[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/Repositories/][repo]], and after that you should register the repository
+in
+[[file:src/Infrastructure/Tarqeem.CA.Infrastructure.Persistence/ServiceConfiguration/ServiceCollectionExtensions.cs]]
+the repository interface should be in
+[[file:src/Core/Tarqeem.CA.Application/Contracts/Persistence/]]
+** Add New Entity With Endpoints                                     :noexport:
 
   In order:
   1. Add the entity to the domains:
